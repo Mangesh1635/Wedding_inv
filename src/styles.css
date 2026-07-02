@@ -1,0 +1,177 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-sage: var(--sage);
+  --color-burgundy: var(--burgundy);
+  --color-cream: var(--cream);
+  --color-rose: var(--rose);
+  --color-midnight: var(--midnight);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+
+  --font-display: "Tiro Devanagari Marathi", serif;
+  --font-body: "Mukta", sans-serif;
+  --font-accent: "Noto Sans Devanagari", sans-serif;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Brand palette */
+  --sage: #818362;
+  --burgundy: #691420;
+  --cream: #f1f1e8;
+  --rose: #ac8e85;
+  --midnight: #1e202b;
+  --gold: #d4af37;
+  --gold-soft: #e7cf7a;
+
+  --background: var(--cream);
+  --foreground: var(--midnight);
+  --card: #ffffff;
+  --card-foreground: var(--midnight);
+  --popover: #ffffff;
+  --popover-foreground: var(--midnight);
+  --primary: var(--burgundy);
+  --primary-foreground: var(--cream);
+  --secondary: var(--sage);
+  --secondary-foreground: var(--cream);
+  --muted: #ece9dc;
+  --muted-foreground: #5d5a4a;
+  --accent: var(--gold);
+  --accent-foreground: var(--midnight);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: color-mix(in srgb, var(--rose) 35%, transparent);
+  --input: color-mix(in srgb, var(--rose) 35%, transparent);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "kern";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+  }
+}
+
+/* Decorative gradients & effects */
+@utility bg-royal {
+  background:
+    radial-gradient(ellipse at top, color-mix(in srgb, var(--gold) 12%, transparent), transparent 60%),
+    radial-gradient(ellipse at bottom, color-mix(in srgb, var(--burgundy) 18%, transparent), transparent 60%),
+    linear-gradient(180deg, #14121a 0%, #1e202b 100%);
+}
+@utility bg-parchment {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--gold) 18%, transparent), transparent 60%),
+    radial-gradient(800px 500px at 100% 100%, color-mix(in srgb, var(--rose) 25%, transparent), transparent 60%),
+    linear-gradient(180deg, #f6f3e8 0%, #f1f1e8 100%);
+}
+@utility text-gold-gradient {
+  background: linear-gradient(120deg, #b8892b 0%, #e7cf7a 40%, #f5e6a8 55%, #b8892b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility border-gold {
+  border: 1px solid color-mix(in srgb, var(--gold) 60%, transparent);
+}
+@utility shadow-royal {
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--gold) 50%, transparent) inset,
+    0 30px 80px -30px color-mix(in srgb, var(--burgundy) 45%, transparent),
+    0 8px 30px -12px rgba(0,0,0,0.25);
+}
+@utility glass-card {
+  background: color-mix(in srgb, var(--cream) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+}
+@utility glass-dark {
+  background: color-mix(in srgb, #14121a 55%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+@utility divider-ornament {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 80%, transparent), transparent);
+}
+
+@keyframes petal-fall {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(110vh) translateX(40px) rotate(360deg); opacity: 0; }
+}
+@utility petal {
+  animation: petal-fall linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@utility shimmer {
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 60%, transparent), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@utility slow-spin {
+  animation: slow-spin 60s linear infinite;
+}
+@utility slow-spin-reverse {
+  animation: slow-spin 90s linear infinite reverse;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+@utility float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
