@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import coupleHero from "@/assets/couple_hero.png";
+import coupleHero from "@/assets/couple_Hero.png";
 import bridePortrait from "@/assets/bride.png";
 import groomPortrait from "@/assets/groom.png";
 import g1 from "@/assets/g1.jpg";
